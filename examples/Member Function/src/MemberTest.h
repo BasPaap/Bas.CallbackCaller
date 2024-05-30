@@ -12,13 +12,12 @@
 class MemberTest
 {
     Bas::CallbackCaller callbackCaller;
+    int value;  // We'll initialize each MemberTest instance with a unique number to demonstrate that the callback is called on separate instances.
 
     public:
-    void actualMemberCallback();
-    static void staticCallback(MemberTest instance);
-
-    void begin();
-    void raiseCallback();
+    void memberCallback();  // The callback to be called
+    void begin(int value);  // begin() initializes the MemberTest instance
+    void raiseCallback();   // raise the callback
 };
 
 #endif

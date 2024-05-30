@@ -1,23 +1,26 @@
 #include "MemberTest.h"
 
-void MemberTest::actualMemberCallback()
+void MemberTest::memberCallback()
 {
-    Serial.println("Member callback called!");
+    // Print the value passed to the begin() function.
+    Serial.print("Member callback called, value is ");
+    Serial.println(this->value);
 }
 
-void MemberTest::staticCallback(MemberTest instance)
+void MemberTest::begin(int value)
 {
-    instance.actualMemberCallback();
-}
+    // Store the passed value argument.
+    // The callback will later print it to show that it is being called on the correct instance of this class.
+    this->value = value;
 
-void MemberTest::begin()
-{
+    // Attach a callback by means of a lambda which calls the memberCallback() member function.
     Serial.println("Attaching callback.");
-    this->callbackCaller.begin((Bas::CallbackCaller::instance_callback_t)staticCallback, (Bas::CallbackCaller::instance_pointer_t)this);    
+    this->callbackCaller.begin([this]{ memberCallback(); });
 }
 
 void MemberTest::raiseCallback()
 {
+    // Raise the callback
     Serial.println("Raising callback.");
     this->callbackCaller.call();
 }
