@@ -3,6 +3,3 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
-
-# main.cpp must be in the project for it to compile in PlatformIO, but we don't want it for the library repository.
-src/main.cpp
