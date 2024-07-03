@@ -43,6 +43,7 @@ namespace Bas
         template<typename Function>
         void begin(Function callbackFunction)
         {
+			delete callback; // Just to be sure, in case begin() is called multiple times.
             callback = new Callback<Function>{ callbackFunction };
         }
         void call();
